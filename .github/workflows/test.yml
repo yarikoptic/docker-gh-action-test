@@ -23,6 +23,13 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+      - name: Install docker via brew
+        if: matrix.os == 'macos-latest'
+        run: |
+          which brew || true
+          apt update && apt install -y curl
+          ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+          brew install --cask docker 
       - name: Test docker
         run: |
           docker version
