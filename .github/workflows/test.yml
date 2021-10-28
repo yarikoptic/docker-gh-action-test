@@ -30,7 +30,6 @@ jobs:
           brew --version
       - name: Install and start docker
         if: matrix.os == 'macos-latest'
-        # https://github.com/docker/roadmap/issues/80#issuecomment-633613240
         run: |
           bash install-docker.sh
           bash start-docker.sh
