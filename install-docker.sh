@@ -13,7 +13,8 @@ xattr -d -r com.apple.quarantine /Applications/Docker.app
 
 echo "preemptively do docker.app's setup to avoid any gui prompts"
 sudo "$(which cp)" /Applications/Docker.app/Contents/Library/LaunchServices/com.docker.vmnetd /Library/PrivilegedHelperTools
-sudo "$(which cp)" /Applications/Docker.app/Contents/Resources/com.docker.vmnetd.plist /Library/LaunchDaemons/
+# exists already in destination 
+#sudo "$(which cp)" /Applications/Docker.app/Contents/Resources/com.docker.vmnetd.plist /Library/LaunchDaemons/
 sudo "$(which chmod)" 544 /Library/PrivilegedHelperTools/com.docker.vmnetd
 sudo "$(which chmod)" 644 /Library/LaunchDaemons/com.docker.vmnetd.plist
 sudo "$(which launchctl)" load /Library/LaunchDaemons/com.docker.vmnetd.plist
