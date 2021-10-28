@@ -23,13 +23,17 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
-      - name: Install docker via brew
+      - name: Updating and upgrading brew
         if: matrix.os == 'macos-latest'
         run: |
-          which brew || true
-          apt update && apt install -y curl
           ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-          brew install --cask docker 
+          brew --version
+      - name: Install and start docker
+        if: matrix.os == 'macos-latest'
+        # https://github.com/docker/roadmap/issues/80#issuecomment-633613240
+        run: |
+          bash install-docker.sh
+          bash start-docker.sh
       - name: Test docker
         run: |
           docker version
