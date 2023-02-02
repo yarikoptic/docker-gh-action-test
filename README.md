@@ -22,12 +22,12 @@ jobs:
           brew --version
       - name: Install and start docker
         if: matrix.os == 'macos-latest'
-        # https://github.com/docker/for-mac/issues/2359#issuecomment-943131345
+        # https://github.com/docker/roadmap/issues/80#issuecomment-1083441568
         run: |
-          brew install --cask docker
-          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
-          open -a /Applications/Docker.app --args --unattended --accept-license
-          while ! /Applications/Docker.app/Contents/Resources/bin/docker info &>/dev/null; do sleep 1; done
+          # for the docker cli
+          brew install docker
+          # installed by default
+          colima start
       - name: Test docker
         run: |
           docker version
@@ -37,5 +37,5 @@ jobs:
 ## Why
 - I wanted to run `docker` in `windows`, `macos` and `linux` in GitHub actions to have a minimal POC.
 - 2021-10-28: Currently it's working for `docker` in version `v20.10.8` for `macos` with the code from this [comment](https://github.com/docker/for-mac/issues/2359#issuecomment-943131345).
-- 2023-01-24: Docker updated the *unattended* install. See this [comment](https://github.com/docker/roadmap/issues/80#issuecomment-1092544646) for more details.
+- 2023-02-02: switch do [colima](https://github.com/abiosoft/colima). See the [comment](https://github.com/docker/roadmap/issues/80#issuecomment-1083441568) for details.
 - You may wonder why there are still scripts in the `ci-scripts` folder. The reason is: I wanted to keep them if the `Docker.app` changes its install flags, etc. in the future.
