@@ -7,7 +7,7 @@ on:
   pull_request:
     types: ['opened', 'synchronize']
   schedule:
-    # Every Monday at 9AM UTC
+    # Every Monday at 9AM UTC (Yarik apparently did cron spec incorrectly somewhere)
     - cron: "0 9 * * 1"
 
 jobs:
