@@ -37,4 +37,4 @@ jobs:
         run: |
           docker version
           docker info
-          docker run -it --rm bids/validator --help
+          docker run --rm bids/validator --help
