@@ -32,10 +32,9 @@ jobs:
         run: |
           # for the docker cli
           brew install docker
-          # installed by default
-          colima start
           docker ps
       - name: Test docker
         run: |
           docker version
           docker info
+          docker run -it --rm bids/validator --help
